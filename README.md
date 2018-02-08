@@ -1,8 +1,16 @@
-# vue-source-code
+# vue-source
 
-> vue 源码理解及相关demo
+> vue 1.0.28 源码注释 及 Vue 源码详细解析
 
-## Build Setup
+## Vue源码注释版
+
+注释源码地址：
+
+```
+ src/vue/src/...
+```
+
+## Demo运行
 
 ``` bash
 # install dependencies
@@ -11,17 +19,4 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <img class="logo" src="./assets/logo.png">
-    <!-- <hello @click.stop="hello" style="color: red" class="hello" :class="{'selected': true}">
-      1111
-    </hello> -->
+    <hello @click.stop="hello" style="color: red" class="hello" :class="{'selected': true}"></hello>
     <p>
       Welcome to your Vue.js app!
     </p>
@@ -25,7 +23,7 @@
 </template>
 
 <script>
-// import Hello from './components/Hello'
+import Hello from './components/Hello'
 // import test from './components/test'
 
 export default {
@@ -39,7 +37,7 @@ export default {
     // console.log(234)
   },
   components: {
-    // Hello,
+    Hello,
     // test
   },
   props: {

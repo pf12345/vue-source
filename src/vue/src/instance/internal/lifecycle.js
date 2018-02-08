@@ -56,14 +56,23 @@ export default function (Vue) {
     // on the container node and replacer node.
     var original = el
     // 将自定义tag转化为真实的html 但是不包括动态添加的数据
-    // <hello></hello>  =>  <div><h1>hello {{message}}</h1></div> => <div><h1>hello</h1></div>
+    // <hello></hello>  =>  <div><h1>hello {{message}}</h1></div> => <div><h1>hello {{message}}</h1></div>
     /**
       transclude的意思是内嵌，这个步骤会把你template里给出的模板转换成一段dom，然后抽取出你el选项指定的dom里的内容（即子元素，
       因为模板里可能有slot），把这段模板dom嵌入到el里面去，当然，如果replace为true，
       那他就是直接替换el，而不是内嵌。我们大概明白transclude这个名字的意义了，
       但其实更关键的是把template转换为dom的过程（如<p>{{a}}<p>字符串转为真正的段落元素），这里为后面的编译准备好了dom。
     **/
+    console.log(el.outerHTML) // <hello></hello>
     el = transclude(el, options)
+
+    /*
+    <div class="hello" _v-0480c730="" :class="{'selected': true}" style="color: red">
+      <h1 _v-0480c730="">hello {{ msg }} welcome here</h1>
+      <h3 v-if="show" _v-0480c730="">this is v-if</h3>
+    </div>
+    */
+    console.log(el.outerHTML) 
 
     // set this.$el
      // 在el这个dom上挂一些参数,并触发'beforeCompile'钩子,为compile做准备
