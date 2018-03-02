@@ -58,10 +58,10 @@ export function transclude (el, options) {
     }
   }
   // isFragment: node is a DocumentFragment
-  // 使用nodeType 为 11 进行判断
+  // 使用nodeType 为 11 进行判断是非为文档片段
   if (isFragment(el)) {
     // anchors for fragment instance
-    // passing in `persist: true` to avoid them being
+    // passing in `persist: true` to avoid them beingdc
     // discarded by IE during template cloning
     prepend(createAnchor('v-start', true), el)
     el.appendChild(createAnchor('v-end', true))

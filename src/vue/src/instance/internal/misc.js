@@ -57,6 +57,7 @@ export default function (Vue) {
     if (typeof value === 'function') {
       factory = value
     } else {
+      // 从this.$options中取出'components'属性中的value的值即，this.$options['components'][value],其中value会进行特殊处理
       factory = resolveAsset(this.$options, 'components', value, true)
     }
     /* istanbul ignore if */

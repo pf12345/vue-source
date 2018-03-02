@@ -42,6 +42,8 @@ function noop () {}
  * @constructor
  */
 
+// 指令directive构造函数
+// .literal 修饰符告诉指令将它的值解析为一个字面字符串而不是一个表达式
 export default function Directive (descriptor, vm, el, host, scope, frag) {
   this.vm = vm
   this.el = el
@@ -82,6 +84,7 @@ Directive.prototype._bind = function () {
   if (
     // 只要不是cloak指令那就从dom的attribute里移除
     // 是cloak指令但是已经编译和link完成了的话,那也还是可以移除的
+    // 如移出":class"、":style"等
     (name !== 'cloak' || this.vm._isCompiled) &&
     this.el && this.el.removeAttribute
   ) {
@@ -91,6 +94,7 @@ Directive.prototype._bind = function () {
 
   // copy def properties
   // 不采用原型链继承,而是直接extend定义对象到this上，来扩展Directive实例
+  // 将不同指令一些特殊的函数或熟悉合并到实例化的directive里
   var def = descriptor.def
   if (typeof def === 'function') {
     this.update = def
@@ -109,7 +113,6 @@ Directive.prototype._bind = function () {
     this.bind()
   }
   this._bound = true
-
   if (this.literal) {
     this.update && this.update(descriptor.raw)
   } else if (
@@ -169,6 +172,7 @@ Directive.prototype._bind = function () {
  */
 
 Directive.prototype._setupParams = function () {
+  // this.params数据来源于指令 descriptor 合并到 this 中 
   if (!this.params) {
     return
   }
@@ -178,7 +182,9 @@ Directive.prototype._setupParams = function () {
   var i = params.length
   var key, val, mappedKey
   while (i--) {
+    // 使用－连接驼峰字符串，如toDetail => to-detail
     key = hyphenate(params[i])
+    //驼峰化一个连字符连接的字符串
     mappedKey = camelize(key)
     val = getBindAttr(this.el, key)
     if (val != null) {

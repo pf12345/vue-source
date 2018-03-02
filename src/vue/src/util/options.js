@@ -403,9 +403,12 @@ export function resolveAsset (options, type, id, warnMissing) {
   var camelizedId
   var res = assets[id] ||
     // camelCase ID
+    // 将id中－进行驼峰化处理，如'inline-block' => 'inlineBlock'
     assets[camelizedId = camelize(id)] ||
     // Pascal Case ID
+    // 将id直接第一个字段进行大写处理，如‘app’ => 'App'
     assets[camelizedId.charAt(0).toUpperCase() + camelizedId.slice(1)]
+
   if (process.env.NODE_ENV !== 'production' && warnMissing && !res) {
     warn(
       'Failed to resolve ' + type.slice(0, -1) + ': ' + id,

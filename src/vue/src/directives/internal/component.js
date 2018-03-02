@@ -33,13 +33,17 @@ export default {
   bind () {
     if (!this.el.__vue__) {
       // keep-alive cache
+      // 主要用于保留组件状态或避免重新渲染。
       this.keepAlive = this.params.keepAlive
       if (this.keepAlive) {
         this.cache = {}
       }
       // check inline-template
+      // 如果子组件有 inline-template 特性，组件将把它的内容当作它的模板，而不是把它当作分发内容
+      // <hello inline-template></hello>
       if (this.params.inlineTemplate) {
         // extract inline template as a DocumentFragment
+        // 将元素中内容提取出来，并保存到DocumentFragment中
         this.inlineTemplate = extractContent(this.el, true)
       }
       // component resolution related state
@@ -49,6 +53,7 @@ export default {
       this.pendingRemovals = 0
       this.pendingRemovalCb = null
       // create a ref anchor
+      // 创建一个锚点，用来标记当前元素在文档中的位置
       this.anchor = createAnchor('v-component')
       replace(this.el, this.anchor)
       // remove is attribute.
@@ -106,6 +111,7 @@ export default {
       this.childVM = null
     } else {
       var self = this
+      // 需要通过this.resolveComponent 设置 this.Component, 在this.build中，会调new this.Component
       this.resolveComponent(value, function () {
         self.mountComponent(cb)
       })
@@ -120,8 +126,11 @@ export default {
    * @param {Function} cb
    */
 
+   // value => hello, app
   resolveComponent (value, cb) {
     var self = this
+    // Component 为调用 this.vm._resolveComponent ，从this.$options查找的factory
+    // 即Component = factory = resolveAsset(vue.$options, 'components', value, true)
     this.pendingComponentCb = cancellable(function (Component) {
       self.ComponentName =
         Component.options.name ||
@@ -147,6 +156,8 @@ export default {
     var self = this
     var activateHooks = this.Component.options.activate
     var cached = this.getCached()
+    // new 一个新的vue组件对象
+    // newComponent instanceof Vue => true
     var newComponent = this.build()
     if (activateHooks && !cached) {
       this.waitingFor = newComponent

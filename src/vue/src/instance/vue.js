@@ -24,7 +24,6 @@ import lifecycleAPI from './api/lifecycle'
  */
 
 function Vue (options) {
-    console.log(Object.assign({}, options))
   this._init(options)
 }
 

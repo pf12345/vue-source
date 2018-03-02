@@ -171,7 +171,7 @@ export function stripQuotes (str) {
  * @param {String} str
  * @return {String}
  */
-
+//驼峰化一个连字符连接的字符串
 var camelizeRE = /-(\w)/g
 export function camelize (str) {
   return str.replace(camelizeRE, toUpper)
@@ -188,6 +188,7 @@ function toUpper (_, c) {
  * @return {String}
  */
 
+// 使用－连接驼峰字符串，如toDetail => to-detail
 var hyphenateRE = /([^-])([A-Z])/g
 export function hyphenate (str) {
   return str

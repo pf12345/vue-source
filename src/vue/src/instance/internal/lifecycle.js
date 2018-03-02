@@ -63,7 +63,7 @@ export default function (Vue) {
       那他就是直接替换el，而不是内嵌。我们大概明白transclude这个名字的意义了，
       但其实更关键的是把template转换为dom的过程（如<p>{{a}}<p>字符串转为真正的段落元素），这里为后面的编译准备好了dom。
     **/
-    console.log(el.outerHTML) // <hello></hello>
+    // console.log(el.outerHTML) // <hello></hello>
     el = transclude(el, options)
 
     /*
@@ -72,7 +72,7 @@ export default function (Vue) {
       <h3 v-if="show" _v-0480c730="">this is v-if</h3>
     </div>
     */
-    console.log(el.outerHTML) 
+    // console.log(el.outerHTML) 
 
     // set this.$el
      // 在el这个dom上挂一些参数,并触发'beforeCompile'钩子,为compile做准备
@@ -117,7 +117,6 @@ export default function (Vue) {
 
     // link phase
     // make sure to link root with prop scope!
-    console.log(options, el.cloneNode(), contentLinkFn)
     var rootUnlinkFn = rootLinker(this, el, this._scope)
     var contentUnlinkFn = contentLinkFn
       ? contentLinkFn(this, el)

@@ -110,7 +110,7 @@ export default function (Vue) {
     // Sub 为一个函数
     var Sub = createClass(name || 'VueComponent')
 
-    // 将vue.prototype 放入 生成的函数对象中
+    // 将vue.prototype 放入 生成的构造函数对象中
     Sub.prototype = Object.create(Super.prototype)
     Sub.prototype.constructor = Sub
     Sub.cid = cid++

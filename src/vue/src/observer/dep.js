@@ -44,6 +44,7 @@ Dep.prototype.removeSub = function (sub) {
  */
 
 Dep.prototype.depend = function () {
+  // 调用Watcher.prototype.addDep
   Dep.target.addDep(this)
 }
 

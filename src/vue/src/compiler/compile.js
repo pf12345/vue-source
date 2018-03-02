@@ -615,7 +615,6 @@ const DEFAULT_TERMINAL_PRIORITY = 2000
   var component = checkComponentAttr(el, options)
   if (component) {
     var ref = findRef(el)
-    console.log(internalDirectives)
     var descriptor = {
       name: 'component',
       ref: ref,

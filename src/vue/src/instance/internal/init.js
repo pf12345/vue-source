@@ -15,7 +15,6 @@ export default function (Vue) {
    */
 
   Vue.prototype._init = function (options) {
-    console.log(Object.assign({}, options))
     options = options || {}
     this.$el = null
     this.$parent = options.parent

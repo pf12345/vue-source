@@ -42,6 +42,7 @@ export function inDoc (node) {
   var parent = node.parentNode
   return doc === node ||
     doc === parent ||
+    // Node.contains()返回的是一个布尔值，来表示传入的节点是否为该节点的后代节点。
     !!(parent && parent.nodeType === 1 && (doc.contains(parent)))
 }
 
@@ -99,6 +100,8 @@ export function hasBindAttr (node, name) {
  
 
 export function before (el, target) {
+  // Node.insertBefore() 方法在参考节点之前插入一个节点作为一个指定父节点的子节点。
+  // 即在target.parentNode中插入el元素
   target.parentNode.insertBefore(el, target)
 }
 
@@ -265,7 +268,7 @@ export function removeClass (el, cls) {
  * @param {Boolean} asFragment
  * @return {Element|DocumentFragment}
  */
-
+// 将元素中内容提取出来，并保存到临时元素中
 export function extractContent (el, asFragment) {
   var child
   var rawContent
@@ -346,6 +349,7 @@ export function isTemplate (el) {
  * @return {Comment|Text}
  */
 
+// 创建用于执行DOM插入/清除的“锚”
 export function createAnchor (content, persist) {
   var anchor = config.debug
     ? document.createComment(content)

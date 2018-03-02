@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import test from './test.vue'
+// import test from './test.vue'
 export default {
   components: {
-    test
+    // test
   },
   created() {
     
