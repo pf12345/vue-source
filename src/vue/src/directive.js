@@ -42,6 +42,8 @@ function noop () {}
  * @constructor
  */
 
+ // 很多都是通过指令完成，如组件构建，文本绑定，循环，展示隐藏等
+
 // 指令directive构造函数
 // .literal 修饰符告诉指令将它的值解析为一个字面字符串而不是一个表达式
 export default function Directive (descriptor, vm, el, host, scope, frag) {
@@ -80,6 +82,7 @@ Directive.prototype._bind = function () {
   var name = this.name
   var descriptor = this.descriptor
 
+
   // remove attribute
   if (
     // 只要不是cloak指令那就从dom的attribute里移除
@@ -113,12 +116,12 @@ Directive.prototype._bind = function () {
     this.bind()
   }
   this._bound = true
+  // 下面这些判断是因为许多指令比如slot component之类的并不是响应式的,
+  // 他们只需要在bind里处理好dom的分发和编译/link即可然后他们的使命就结束了,生成watcher和收集依赖等步骤根本没有
+  // 所以根本不用执行下面的处理
   if (this.literal) {
     this.update && this.update(descriptor.raw)
   } else if (
-    // 下面这些判断是因为许多指令比如slot component之类的并不是响应式的,
-  // 他们只需要在bind里处理好dom的分发和编译/link即可然后他们的使命就结束了,生成watcher和收集依赖等步骤根本没有
-  // 所以根本不用执行下面的处理
     (this.expression || this.modifiers) &&
     (this.update || this.twoWay) &&
     !this._checkStatement()

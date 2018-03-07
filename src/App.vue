@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <img class="logo" src="./assets/logo.png">
-    <hello @click.stop="hello" style="color: red" class="hello" :class="{'selected': true}" inline-template>
+    <hello @click.stop="hello" style="color: red" class="hello1" :class="{'selected': true}" inline-template>
       <p>this is test hahahaha</p>
     </hello>
-    <hello @click.stop="hello" style="color: red" class="hello" :class="{'selected': true}"></hello>
+    <hello @click.stop="hello" style="color: red" class="hello1" :class="{'selected': true}"></hello>
     <p>
       Welcome to your Vue.js app!
     </p>

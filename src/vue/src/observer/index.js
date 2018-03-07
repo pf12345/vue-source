@@ -38,6 +38,7 @@ export function withoutConversion (fn) {
  */
 
 export function Observer (value) {
+  console.log(value)
   this.value = value
   this.dep = new Dep()
   def(value, '__ob__', this)

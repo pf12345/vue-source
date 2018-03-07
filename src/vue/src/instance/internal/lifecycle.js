@@ -90,6 +90,8 @@ export default function (Vue) {
 
     // console.log(el, options, contextOptions)
     // 编译根元素
+
+    // console.log(el.innerHTML)
     var rootLinker = compileRoot(el, options, contextOptions)
 
     // resolve slot distribution
@@ -176,6 +178,7 @@ export default function (Vue) {
    */
 
   Vue.prototype._bindDir = function (descriptor, node, host, scope, frag) {
+
     this._directives.push(
       new Directive(descriptor, this, node, host, scope, frag)
     )

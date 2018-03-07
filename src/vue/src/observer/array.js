@@ -18,7 +18,9 @@ export const arrayMethods = Object.create(arrayProto)
 ]
 .forEach(function (method) {
   // cache original method
+  // 首先，保存原生数组方法，如[].push
   var original = arrayProto[method]
+  // 对数组方法重写
   def(arrayMethods, method, function mutator () {
     // avoid leaking arguments:
     // http://jsperf.com/closure-with-arguments
@@ -27,7 +29,9 @@ export const arrayMethods = Object.create(arrayProto)
     while (i--) {
       args[i] = arguments[i]
     }
+    // 仍然调用数组原生方法处理数据
     var result = original.apply(this, args)
+    // 在处理过程中，对其进行监控，即监控数组的push、pop等原生方法；
     var ob = this.__ob__
     var inserted
     switch (method) {

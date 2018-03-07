@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <h1>hello {{ msg }} welcome here</h1>
-    <h3 v-if="show" >this is v-if</h3>
+    <h1 v-demo="demo">hello {{ msg }} welcome here</h1>
+    <!-- <h3 v-if="show" >this is v-if</h3> -->
   </div>
 </template>
 
@@ -12,15 +12,33 @@ export default {
     // test
   },
   created() {
-    
+    setInterval(()=> {
+      this.demo += 1;
+    }, 1000)
   },
   data () {
     return {
       msg: 'Hello World!',
-      show: false
+      show: false,
+      demo: 1
     }
   },
   mounted() {
+
+  },
+  directives: {
+    demo: {
+      bind: function() {
+        this.el.setAttribute('style', 'color: green');
+      },
+      update: function(value) {
+        if(value % 2) {
+          this.el.setAttribute('style', 'color: green');
+        } else {
+          this.el.setAttribute('style', 'color: red');
+        }
+      }
+    }
   }
 }
 </script>

@@ -108,6 +108,7 @@ const DEFAULT_TERMINAL_PRIORITY = 2000
   }
   // 先记录下数组里原先有多少元素,他们都是已经执行过_bind的,我们只_bind新添加的directive
   var originalDirCount = vm._directives.length
+  // 在生成的linker中，会对元素的属性进行指令化处理，并保存到_directives中
   linker()
   // slice出新添加的指令们
   var dirs = vm._directives.slice(originalDirCount)
@@ -749,7 +750,7 @@ skip.terminal = true
  function compileDirectives (attrs, options) {
   var i = attrs.length
   var dirs = []
-  var attr, name, value, rawName, rawValue, dirName, arg, modifiers, diarDef, tokens, matched
+  var attr, name, value, rawName, rawValue, dirName, arg, modifiers, dirDef, tokens, matched
     // console.log(attrs)
     while (i--) {
     // 属性节点
